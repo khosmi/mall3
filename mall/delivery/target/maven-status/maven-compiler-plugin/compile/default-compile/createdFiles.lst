@@ -1,0 +1,11 @@
+mall\OrderPlaced.class
+mall\PolicyHandler.class
+mall\DeliveryController.class
+mall\Delivery.class
+mall\DeliveryRepository.class
+mall\AbstractEvent.class
+mall\DeliveryCanceled.class
+mall\DeliveryApplication.class
+mall\AbstractEvent$1.class
+mall\config\kafka\KafkaProcessor.class
+mall\DeliveryStarted.class
