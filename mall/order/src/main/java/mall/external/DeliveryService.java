@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
+// khos req/res 호출, circuit Breaker Fallback 처리
 @FeignClient(name="delivery", url="http://localhost:8082", fallback = DeliveryServiceImpl.class)
 public interface DeliveryService {
 
