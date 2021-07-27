@@ -32,7 +32,7 @@ public class Reservation {
 
         movie.external.Pay pay = new movie.external.Pay();
         // mappings goes here
-        Application.applicationContext.getBean(movie.external.PayService.class)
+        ReservationApplication.applicationContext.getBean(movie.external.PayService.class)
             .pay(pay);
 
     }
