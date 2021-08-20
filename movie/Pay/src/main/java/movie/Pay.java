@@ -26,13 +26,25 @@ public class Pay {
     public void onPostPersist(){
         Payed payed = new Payed();
         BeanUtils.copyProperties(this, payed);
+        //payed.setStatus("Payed");  // 상태 변경 by khos
         payed.publishAfterCommit();
 
     }
+
+    @PostUpdate
+    public void onPostUpdate(){
+        Payed payed = new Payed();
+        BeanUtils.copyProperties(this, payed);
+        //payed.setStatus("Payed");  // 상태 변경 by khos
+        payed.publishAfterCommit();
+
+    }
+
     @PreRemove
     public void onPreRemove(){
         CanceledPay canceledPay = new CanceledPay();
         BeanUtils.copyProperties(this, canceledPay);
+        canceledPay.setStatus("Canceled Payment");  // 상태 변경 by khos
         canceledPay.publishAfterCommit();
 
     }

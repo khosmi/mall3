@@ -19,11 +19,13 @@ public class PolicyHandler{
 
         System.out.println("\n\n##### listener CancelPay : " + canceledReservation.toJson() + "\n\n");
 
-
-
         // Sample Logic //
-        // Pay pay = new Pay();
-        // payRepository.save(pay);
+         Pay pay = new Pay();
+
+         pay.setReservationId(canceledReservation.getId());   // 예약ID 설정 by khos
+         pay.setStatus("Canceled Payment");                   // 상태 변경 by khos
+         payRepository.save(pay);
+         
 
     }
 

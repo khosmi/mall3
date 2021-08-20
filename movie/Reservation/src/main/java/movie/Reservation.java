@@ -25,6 +25,7 @@ public class Reservation {
     public void onPostPersist(){
         Reserved reserved = new Reserved();
         BeanUtils.copyProperties(this, reserved);
+        reserved.setStatus("Reserved");  // 예약상태 입력 by khos
         reserved.publishAfterCommit();
 
         //Following code causes dependency to external APIs
@@ -32,6 +33,9 @@ public class Reservation {
 
         movie.external.Pay pay = new movie.external.Pay();
         // mappings goes here
+        BeanUtils.copyProperties(this, pay); // Pay 값 설정 by khos
+        pay.setReservationId(reserved.getId());
+        pay.setStatus("reserved"); // Pay 값 설정 by khos
         ReservationApplication.applicationContext.getBean(movie.external.PayService.class)
             .pay(pay);
 
@@ -40,6 +44,7 @@ public class Reservation {
     public void onPreRemove(){
         CanceledReservation canceledReservation = new CanceledReservation();
         BeanUtils.copyProperties(this, canceledReservation);
+        canceledReservation.setStatus("Canceled Reservation");  // 예약상태 입력 by khos
         canceledReservation.publishAfterCommit();
 
     }

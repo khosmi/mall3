@@ -20,10 +20,20 @@ public class PolicyHandler{
         System.out.println("\n\n##### listener Ticket : " + payed.toJson() + "\n\n");
 
 
+        // Sample Logic // ticket 데이터 저장 by khos
+        Ticket ticket = new Ticket();
+        ticket.setMovie(payed.getMovie());
+        ticket.setPayId(payed.getId());
+        ticket.setReservationId(payed.getReservationId());
+        ticket.setSeatNo(payed.getSeatNo());
+        ticket.setStatus(payed.getStatus());
+        ticket.setTheater(payed.getTheater());
+        ticket.setTime(payed.getTime());
+        ticket.setUserid(payed.getUserid());
+        ticketRepository.save(ticket);
 
-        // Sample Logic //
-        // Ticket ticket = new Ticket();
-        // ticketRepository.save(ticket);
+        // ticket 데이터 저장 by khos
+
 
     }
     @StreamListener(KafkaProcessor.INPUT)

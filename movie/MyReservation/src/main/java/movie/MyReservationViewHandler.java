@@ -41,8 +41,50 @@ public class MyReservationViewHandler {
             e.printStackTrace();
         }
     }
+/*
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenReserved_then_CREATE_2 (@Payload Payed payed) {
+        try {
 
+            if (!payed.validate()) return;
+                // view 객체 조회
 
+                    List<MyReservation> myReservationList = myReservationRepository.findByReservationId(payed.getReservationId());
+                    for(MyReservation myReservation : myReservationList){
+                    // view 객체에 이벤트의 eventDirectValue 를 set 함
+                    myReservation.setPayId(payed.getId());
+                    myReservation.setStatus(payed.getStatus());
+                // view 레파지 토리에 save
+                myReservationRepository.save(myReservation);
+                }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenReserved_then_CREATE_3 (@Payload Ticketed ticketed) {
+        try {
+
+            if (!ticketed.validate()) return;
+                // view 객체 조회
+
+                    List<MyReservation> myReservationList = myReservationRepository.findByReservationId(ticketed.getReservationId());
+                    for(MyReservation myReservation : myReservationList){
+                    // view 객체에 이벤트의 eventDirectValue 를 set 함
+                    myReservation.setTicketId(ticketed.getId());
+                    myReservation.setStatus(ticketed.getStatus());
+                // view 레파지 토리에 save
+                myReservationRepository.save(myReservation);
+                }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+*/
     @StreamListener(KafkaProcessor.INPUT)
     public void whenPayed_then_UPDATE_1(@Payload Payed payed) {
         try {
@@ -72,6 +114,7 @@ public class MyReservationViewHandler {
                     for(MyReservation myReservation : myReservationList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
                     myReservation.setTicketId(ticketed.getId());
+                    myReservation.setPayId(ticketed.getPayId());  // by khos
                     myReservation.setStatus(ticketed.getStatus());
                 // view 레파지 토리에 save
                 myReservationRepository.save(myReservation);
